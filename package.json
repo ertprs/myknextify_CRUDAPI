@@ -1,0 +1,45 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.18.3",
+    "crypto": "^1.0.1",
+    "debug": "^4.1.1",
+    "dom-to-image": "^2.6.0",
+    "dotenv": "^8.1.0",
+    "dropbox-v2-api": "^2.4.3",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.16.5",
+    "md5": "^2.2.1",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "nodemailer": "^6.4.2",
+    "pm2": "^3.5.1",
+    "replacestring": "0.0.0",
+    "restify": "^8.2.0",
+    "restify-cors-middleware": "^1.1.1",
+    "restify-errors": "^7.0.0",
+    "restify-https": "0.0.3",
+    "restify-jwt-community": "^1.0.13",
+    "sequelize": "^5.3.0",
+    "string_decoder": "^1.2.0"
+  },
+  "name": "api_node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

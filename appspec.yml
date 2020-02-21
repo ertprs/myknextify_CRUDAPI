@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/api-searchcloud
+hooks:
+  BeforeInstall:
+    - location: bin/install_dependencies.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: bin/start_server.sh
+      timeout: 300
+  ApplicationStop:
+    - location: bin/stop_server.sh
+      timeout: 300
+      runas: root
+  ValidateService:
+    - location: bin/validate_server.sh
+      timeout: 300
+      runas: root
