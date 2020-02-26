@@ -200,7 +200,7 @@ exports.AbreSQLInterno = (sqlQuery) => {
 
 exports.EnviaEmail = (destinatario, assunto, conteudo) => {
     return new Promise((resolve, reject) => {
-        /*var DataAgora = this.dataAtualFormatada();
+        let DataAgora = this.dataAtualFormatada();
         console.log('Envio de email: ' + DataAgora);
         //Criar transporter
         const transporter = nodemailer.createTransport({
@@ -215,7 +215,7 @@ exports.EnviaEmail = (destinatario, assunto, conteudo) => {
         });
         //Objeto e-mail
         const email = {
-            from: 'Search Cloud <noreply@searchcloud.com.br>',
+            from: 'EasyCopyMais <noreply@searchcloud.com.br>',
             to: destinatario,
             subject: assunto,
             html: conteudo
@@ -231,6 +231,6 @@ exports.EnviaEmail = (destinatario, assunto, conteudo) => {
                     resolve(JSON.parse('{"codigo": 1, "resultado": "Email enviado com sucesso: ' + result.response + '"}'));
                 }
             }
-        }); */
+        });
     });
 }

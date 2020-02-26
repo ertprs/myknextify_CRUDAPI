@@ -90,6 +90,18 @@ auth(server, comum, usuario, validationContract, errs); */
 t100franqueado = require('../routes/T100FRANQUEADO');
 t100franqueado(server, knex, errs, comum);
 
+//T101CLIENTE.js
+t100cliente = require('../routes/t101cliente');
+t100cliente(server, knex, errs, comum);
+
+//T103USUARIO.js
+t103usuario = require('../routes/T103USUARIO');
+t103usuario(server, knex, errs, comum);
+
+//T110CATEGORIAPRODUTO.js
+T110CATEGORIAPRODUTO = require('../routes/T110CATEGORIAPRODUTO');
+T110CATEGORIAPRODUTO(server, knex, errs, comum);
+
 //mylib
 mylib = require('../comum/mylib');
 mylib(server, comum);

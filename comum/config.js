@@ -1,10 +1,8 @@
 global.EMAIL_TMPL = 'Olá, <strong>{0}</strong>, seja bem vindo ao Easy Copy!';
-
-global.ambiente = process.env.NODE_ENV;
-//global.ambiente = 'development';
-global.PORT = process.env.PORT;
-//global.PORT = 5000;
-
+//global.ambiente = process.env.NODE_ENV;
+global.ambiente = 'development';
+//global.PORT = process.env.PORT;
+global.PORT = 5000;
 if (ambiente == 'production') {
     global.mySQLhost = '';
     global.mySQLuser = '';
