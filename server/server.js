@@ -102,6 +102,22 @@ t103usuario(server, knex, errs, comum);
 T110CATEGORIAPRODUTO = require('../routes/T110CATEGORIAPRODUTO');
 T110CATEGORIAPRODUTO(server, knex, errs, comum);
 
+//T111PRODUTO.js
+T111PRODUTO = require('../routes/T111PRODUTO');
+T111PRODUTO(server, knex, errs, comum);
+
+//T150GRUPOOPERACAO.js
+T150GRUPOOPERACAO = require('../routes/T150GRUPOOPERACAO');
+T150GRUPOOPERACAO(server, knex, errs, comum);
+
+//T151OPERACAO.js
+T151OPERACAO = require('../routes/T151OPERACAO');
+T151OPERACAO(server, knex, errs, comum);
+
+//T153OPERACAOXGRUPO.js
+T153OPERACAOXGRUPO = require('../routes/T153OPERACAOXGRUPO');
+T153OPERACAOXGRUPO(server, knex, errs, comum);
+
 //mylib
 mylib = require('../comum/mylib');
 mylib(server, comum);
