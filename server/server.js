@@ -1,5 +1,5 @@
 const restify = require('restify'),
-      https = require('restify-https');
+    https = require('restify-https');
 const errs = require('restify-errors');
 const corsMiddleware = require('restify-cors-middleware');
 const fs = require('fs');
@@ -20,8 +20,8 @@ const server = restify.createServer({
 var cors = corsMiddleware({
     preflightMaxAge: 5,
     origins: ['*'],
-    allowHeaders:['*', 'Authorization'],
-    exposeHeaders:[]
+    allowHeaders: ['*', 'Authorization'],
+    exposeHeaders: []
 });
 
 server.pre(cors.preflight);
@@ -29,10 +29,10 @@ server.use(cors.actual);
 server.use(https({ override: false }));
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.bodyParser({
-    mapParams:true,
-    mapFiles:false,
+    mapParams: true,
+    mapFiles: false,
     overrideParams: false
-   }));
+}));
 
 server.use(restify.plugins.queryParser());
 
@@ -40,16 +40,16 @@ server.use(restify.plugins.queryParser());
 const port = normalizePort(global.PORT);
 function normalizePort(val) {
     const port = parseInt(val, 10);
-    if (isNaN(port)){
+    if (isNaN(port)) {
         return val;
     }
-    if (port >= 0){
+    if (port >= 0) {
         return port;
     }
 }
 
 //Subindo servidor na porta padrão
-server.listen(port, function(){
+server.listen(port, function () {
     console.log('EasyCopy Api Online - Porta: %s Ambiente: %s', process.env.PORT, process.env.NODE_ENV);
     console.log('Host Mysql: %s Banco: %s', global.mySQLhost, global.mySQLdatabase);
 });
@@ -58,26 +58,26 @@ server.listen(port, function(){
 var knex = require('knex')({
     client: 'mysql',
     connection: {
-      host : global.mySQLhost,
-      user : global.mySQLuser,
-      password : global.mySQLpassword,
-      database : global.mySQLdatabase,
-      acquireConnectionTimeout: 200000,
-      log: {
-        warn(message) {
-        },
-        error(message) {
-        },
-        deprecate(message) {
-        },
-        debug(message) {
-        },
-      }      
+        host: global.mySQLhost,
+        user: global.mySQLuser,
+        password: global.mySQLpassword,
+        database: global.mySQLdatabase,
+        acquireConnectionTimeout: 200000,
+        log: {
+            warn(message) {
+            },
+            error(message) {
+            },
+            deprecate(message) {
+            },
+            debug(message) {
+            },
+        }
     }
 });
 
 //URL principal
-server.get('/', function(req, res, next) {
+server.get('/', function (req, res, next) {
     res.send('EasyCopy Api Online!');
 });
 
