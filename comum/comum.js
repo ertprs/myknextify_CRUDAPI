@@ -234,3 +234,57 @@ exports.EnviaEmail = (destinatario, assunto, conteudo) => {
         });
     });
 }
+
+exports.RetornaLista = (sqlQuery, res) => {
+    const connection = mysql.createConnection({
+        host: global.mySQLhost,
+        user: global.mySQLuser,
+        password: global.mySQLpassword,
+        database: global.mySQLdatabase
+    });
+    var DataAgora = this.dataAtualFormatada();
+    console.log('Retorna Lista: ' + DataAgora);
+    connection.query({
+        sql: sqlQuery,
+        timeout: 200000
+    }, function (err, rows, fields) {
+        try {
+            if (err) {
+                connection.end(function (err) { });
+                res.send(new errs.BadRequestError(err))
+            } else {
+                connection.end(function (err) { });
+                if (!rows[0]) {
+                    res.send(new errs.NotFoundError('Nenhum registro encontrado'));
+                } else {
+                    //Verificar se configuração está na Base64 e recuperar
+                    const blob64 = require('./blob64');
+                    var ehBase64 = 'N';
+                    //Blob para textp
+                    var strVerific = blob64.BlobAsText(rows[0].T114VALOR);
+                    //Verificar se texto está em Base64 e fazer Decode
+                    if (blob64.VerificaBase64(strVerific) == true) {
+                        rows[0].T114VALOR = blob64.Blob64AsText(rows[0].T114VALOR);
+                        ehBase64 = 'S';
+                    }
+                    //Quebrar lista em Linhas
+                    var jsonLista = JSON.stringify(rows[0].T114VALOR);
+                    var strLista = '';
+                    if (ehBase64 == 'N') {
+                        var bufferOriginal = Buffer.from(JSON.parse(jsonLista).data);
+                        strLista = bufferOriginal.toString('utf8');
+                    } else strLista = rows[0].T114VALOR;
+                    var arrayLista = strLista.split(/\n/).map(line => line.trim());
+                    var resultado = [];
+                    for (var i = 0, l = arrayLista.length; i < l; i++) {
+                        resultado.push({ T114VALOR: arrayLista[i] });
+                    }
+                    res.send(resultado);
+                }
+            }
+        } catch (error) {
+            connection.end(function (err) { });
+            res.send(new errs.BadRequestError(error));
+        }
+    });
+}

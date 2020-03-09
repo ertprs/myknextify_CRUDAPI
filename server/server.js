@@ -118,6 +118,18 @@ T151OPERACAO(server, knex, errs, comum);
 T153OPERACAOXGRUPO = require('../routes/T153OPERACAOXGRUPO');
 T153OPERACAOXGRUPO(server, knex, errs, comum);
 
+//T113CAMPOPERSONALIZADOPROD.js
+T113CAMPOPERSONALIZADOPROD = require('../routes/T113CAMPOPERSONALIZADOPROD');
+T113CAMPOPERSONALIZADOPROD(server, knex, errs, comum);
+
+//T114LISTACAMPO.js
+T114LISTACAMPO = require('../routes/T114LISTACAMPO');
+T114LISTACAMPO(server, knex, errs, comum);
+
+//T115CAMPOSLISTA.js
+T115CAMPOSLISTA = require('../routes/T115CAMPOSLISTA');
+T115CAMPOSLISTA(server, knex, errs, comum);
+
 //mylib
 mylib = require('../comum/mylib');
 mylib(server, comum);
