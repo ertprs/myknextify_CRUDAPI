@@ -1,7 +1,4 @@
-.ENV
-
-bin
-
-aapscpec.yml
-
 node_modules/
+.ENV
+bin
+aapscpec.yml
