@@ -3,3 +3,5 @@
 bin
 
 aapscpec.yml
+
+node_modules/
