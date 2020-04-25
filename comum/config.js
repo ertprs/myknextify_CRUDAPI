@@ -13,9 +13,9 @@ if (ambiente == 'production') {
     global.urlApi = '';
     global.tokenAPI = '';
 } else if (ambiente == 'development') {
-    global.mySQLhost = 'mysql380.umbler.com';
+    global.mySQLhost = 'mysql669.umbler.com';
     global.mySQLuser = 'easycopy_teste';
-    global.mySQLpassword = ',nfOVi2[wL66';
+    global.mySQLpassword = '9u3Ex,Wz#M';
     global.mySQLdatabase = 'easycopy_teste';
     global.mySQLport = '3306';
     global.urlSite = '';
