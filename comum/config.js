@@ -13,10 +13,10 @@ if (ambiente == 'production') {
     global.urlApi = '';
     global.tokenAPI = '';
 } else if (ambiente == 'development') {
-    global.mySQLhost = 'easycopy.mysql.dbaas.com.br';
-    global.mySQLuser = 'easycopy';
-    global.mySQLpassword = 'Su@D@07X!W##oy';
-    global.mySQLdatabase = 'easycopy';
+    global.mySQLhost = 'mysql380.umbler.com';
+    global.mySQLuser = 'easycopy_teste';
+    global.mySQLpassword = ',nfOVi2[wL66';
+    global.mySQLdatabase = 'easycopy_teste';
     global.mySQLport = '3306';
     global.urlSite = '';
     global.urlApi = '';
