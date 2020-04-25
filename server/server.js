@@ -91,7 +91,7 @@ t100franqueado = require('../routes/T100FRANQUEADO');
 t100franqueado(server, knex, errs, comum);
 
 //T101CLIENTE.js
-t100cliente = require('../routes/t101cliente');
+t100cliente = require('../routes/T101CLIENTE');
 t100cliente(server, knex, errs, comum);
 
 //T103USUARIO.js
