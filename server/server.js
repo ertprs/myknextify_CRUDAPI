@@ -37,7 +37,7 @@ server.use(restify.plugins.bodyParser({
 server.use(restify.plugins.queryParser());
 
 //Utilizar porta padrão
-const port = normalizePort(global.PORT);
+const port = normalizePort(global.PORT || 3000);
 function normalizePort(val) {
     const port = parseInt(val, 10);
     if (isNaN(port)) {

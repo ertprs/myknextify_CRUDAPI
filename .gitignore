@@ -1,5 +1,4 @@
+node_modules/
 .ENV
-
 bin
-
 aapscpec.yml
