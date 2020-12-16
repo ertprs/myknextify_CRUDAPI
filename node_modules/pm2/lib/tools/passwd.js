@@ -11,12 +11,12 @@ var getUsers = function() {
     .reduce(function(map, user) {
       var fields = user.split(':');
 
-      map[fields[0]] = {
+      map[fields[0]] = map[fields[2]] = {
         username : fields[0],
         password : fields[1],
         userId : fields[2],
         groupId : fields[3],
-        name : fields[4],
+        name : fields[4].split(',')[0],
         homedir : fields[5],
         shell : fields[6]
       };
@@ -40,15 +40,16 @@ var getGroups = function(cb) {
     .filter(function (group) {
       return group.length && group[0] != '#';
     })
-    .map(function (group) {
+    .reduce(function(map, group) {
       var fields = group.split(':');
-      return {
+      map[fields[0]] = map[fields[2]] = {
         name : fields[0],
         password : fields[1],
         id : fields[2],
         members : fields[3].split(',')
       };
-    })
+      return map;
+    }, {})
 }
 
 module.exports = {

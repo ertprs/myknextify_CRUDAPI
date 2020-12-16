@@ -207,18 +207,34 @@ module.exports = function(God) {
   God.killProcess = function(pid, pm2_env, cb) {
     if (!pid) return cb({msg : 'no pid passed or null'});
 
-    var mode = pm2_env.exec_mode;
+    if (typeof(pm2_env.pm_id) === 'number' &&
+        (cst.KILL_USE_MESSAGE || pm2_env.shutdown_with_message == true)) {
+      var proc = God.clusters_db[pm2_env.pm_id];
+
+      if (proc && proc.send) {
+        try {
+          proc.send('shutdown');
+        } catch (e) {
+          console.error(`[AppKill] Cannot send "shutdown" message to ${pid}`)
+          console.error(e.stack, e.message)
+        }
+        return God.processIsDead(pid, pm2_env, cb);
+      }
+      else {
+        console.log(`[AppKill] ${pid} pid cannot be notified with send()`)
+      }
+    }
 
     if (pm2_env.treekill !== true) {
       try {
-        process.kill(parseInt(pid), process.env.PM2_KILL_SIGNAL || 'SIGINT');
+        process.kill(parseInt(pid), cst.KILL_SIGNAL);
       } catch(e) {
         console.error('[SimpleKill] %s pid can not be killed', pid, e.stack, e.message);
       }
       return God.processIsDead(pid, pm2_env, cb);
     }
     else {
-      treekill(parseInt(pid), process.env.PM2_KILL_SIGNAL || 'SIGINT', function(err) {
+      treekill(parseInt(pid), cst.KILL_SIGNAL, function(err) {
         return God.processIsDead(pid, pm2_env, cb);
       });
     }

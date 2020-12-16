@@ -1,7 +1,7 @@
 
 var Common               = require('../Common.js');
 var cst                  = require('../../constants.js');
-var UX                   = require('./CliUx');
+var UX                   = require('./UX');
 var chalk                = require('chalk');
 var Configuration        = require('../Configuration.js');
 
@@ -25,6 +25,7 @@ module.exports = function(CLI) {
       // pm2 conf module-name
       if (key.indexOf(':') === -1 && key.indexOf('.') === -1) {
         displayConf(key, function() {
+          console.log('Modules configuration. Copy/Paste line to edit values.')
           return cb ? cb(null, {success:true}) : that.exitCli(cst.SUCCESS_EXIT)
         });
         return false;
@@ -85,6 +86,7 @@ module.exports = function(CLI) {
           process.env.PM2_PROGRAMMATIC = 'false';
           if (!err)
             Common.printOut(cst.PREFIX_MSG + 'Module %s restarted', app_name);
+          Common.log('Setting changed')
           displayConf(app_name, function() {
             return cb ? cb(null, {success:true}) : that.exitCli(cst.SUCCESS_EXIT);
           });
@@ -184,7 +186,7 @@ module.exports = function(CLI) {
 };
 
 function interactiveConfigEdit(cb) {
-  UX.openEditor(cst.PM2_MODULE_CONF_FILE, function(err, data) {
+  UX.helpers.openEditor(cst.PM2_MODULE_CONF_FILE, function(err, data) {
     Common.printOut(chalk.bold('Module configuration (%s) edited.'), cst.PM2_MODULE_CONF_FILE);
     Common.printOut(chalk.bold('To take changes into account, please restart module related.'), cst.PM2_MODULE_CONF_FILE);
     if (err)
@@ -204,7 +206,7 @@ function displayConf(target_app, cb) {
   }
 
   Configuration.getAll(function(err, data) {
-    UX.dispKeys(data, target_app);
+    UX.helpers.dispKeys(data, target_app);
     return cb();
   });
 }

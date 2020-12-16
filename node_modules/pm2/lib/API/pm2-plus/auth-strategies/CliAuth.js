@@ -1,5 +1,3 @@
-
-
 'use strict'
 
 const AuthStrategy = require('@pm2/js-api/src/auth_strategies/strategy')
@@ -63,7 +61,7 @@ module.exports = class CliStrategy extends AuthStrategy {
     const cb = this.callback
 
     tryEach([
-      // try to find the token via the environement
+      // try to find the token via the environment
       (next) => {
         if (!process.env.PM2_IO_TOKEN) {
           return next(new Error('No token in env'))
